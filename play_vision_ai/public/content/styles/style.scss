@@ -1,0 +1,49 @@
+@use 'tailwindcss/base';
+@use 'tailwindcss/components';
+@use 'tailwindcss/utilities';
+@use 'icons';
+@use 'fonts';
+@use 'mixins';
+
+*{
+  box-sizing: border-box;
+}
+
+
+
+.container{
+  width: 1520px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 1560px){
+    width: 90%;
+  }
+}
+header{
+  max-width: 1620px;
+}
+
+
+
+::-webkit-scrollbar {
+  width: 12px; /* Ширина полосы прокрутки */
+  height: 12px; /* Высота полосы прокрутки */
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-blue-dark /* Цвет фона трека */
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-green; /* Цвет ползунка */
+  border-radius: 10px; /* Закругление углов ползунка */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply border-green-dark;/* Цвет ползунка при наведении */
+}
+
+/* Стили для Firefox */
+html {
+  @apply overflow-y-scroll scrollbar-thin;/* Цвет ползунка и фона трека */
+}
