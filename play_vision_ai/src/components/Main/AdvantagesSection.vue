@@ -1,7 +1,7 @@
 <template>
-  <div class="advantages">
-    <div class="advantages__title">{{ $t('Advantages.title') }}</div>
-    <div class="advantages__cards">
+  <div class="advantages ">
+    <div class="advantages__title hidden-right">{{ $t('Advantages.title') }}</div>
+    <div class="advantages__cards hidden-left">
       <div v-for="index in 3" :key="index" class="advantages__card-container">
         <div class="advantages__card-wrapper">
           <div class="advantages__card-rectangle"></div>
@@ -11,7 +11,6 @@
           </div>
         </div>
         <img class="advantages__card-img" :src="images[index - 1]" alt="">
-
       </div>
     </div>
   </div>
@@ -35,10 +34,11 @@ const images = [
     @include text-48-newZelek;
   }
   &__cards {
-    @apply grid grid-cols-3 gap-5 relative ;
-    @media (max-width: 1600px) {
-      @apply grid-cols-1;
-    }
+    @apply flex gap-5 relative ;
+    margin-bottom: 170px;
+    //@media (max-width: 1560px) {
+    //  @apply grid-cols-1;
+    //}
   }
   &__card-container {
     @apply relative flex flex-col items-center;
@@ -77,9 +77,12 @@ const images = [
     filter: blur(100px);
   }
   &__card-img {
-    position: relative;
-    top: -150px;
+    position: absolute;
+    top: 300px;
     z-index: 100;
+    @media (max-width: 1560px) {
+      top: 60%;
+    }
   }
 }
 </style>

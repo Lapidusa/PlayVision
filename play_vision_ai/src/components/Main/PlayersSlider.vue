@@ -3,12 +3,13 @@
       :modules="[Pagination]"
       :slides-per-view="3"
       :pagination="{ clickable: true }"
+      :space-between="10"
       :breakpoints="{
             1340: { slidesPerView: 3 },
             1024: { slidesPerView: 2 },
             0: { slidesPerView: 1 }
           }">
-    <swiper-slide v-for="(index) in 9" :key="index" class="player__card" style="width: fit-content">
+    <swiper-slide v-for="(index) in 9" :key="index" class="player__card " style="width: fit-content">
       <div class="player__container">
         <div class="player__img-wrapper">
           <img :src="$t(`Players[${index - 1}].image`)" alt="Player Image" class="player__img" />
@@ -16,6 +17,7 @@
         <p class="player__stats">{{ $t(`Players[${index - 1}].stats`) }}</p>
         <img :src="$t(`Players[${index - 1}].football_team`)" alt="Player Image" class="player__team" />
       </div>
+
       <div class="player__name">
         <p>{{ $t(`Players[${index - 1}].name`) }} </p>
         <p>{{ $t(`Players[${index - 1}].surname`) }} </p>
@@ -61,20 +63,23 @@ import 'swiper/css/pagination';
     border-radius: 10px; // Скругление углов
     overflow: hidden; // Скрываем всё, что выходит за границы карточки
   }
+  &__age,&__position,&__country{
+    @apply flex flex-col gap-2.5;
+  }
   &__img{
-    @apply w-full h-auto ;
+    @apply h-auto ;
     border-radius: 10px 10px 0 0;
 
     &-wrapper{
-      @apply relative block;
+      @apply relative flex justify-center;
 
       &:before{
           content: '';
           position: absolute;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
+        width: 100%;
+        height: 100%;
           background: linear-gradient(0deg, #292F41 0%, rgba(41, 47, 65, 0.00) 25.12%);
       }
     }
@@ -97,17 +102,20 @@ import 'swiper/css/pagination';
     right: 5px;
   }
   &__characteristic{
-    @apply text-center flex justify-between;
-
+    @apply text-center flex justify-between text-sm gap-2 relative;
+    top:-10px;
     &-title{
-
+      @apply text-white opacity-50;
     }
     &-data{
 
     }
   }
   &__name{
-    @apply text-center;
+    @include text-20-white-montserrat;
+    @apply text-center relative font-bold;
+    top: -20px;
+    line-height: 20px;
   }
 }
 </style>

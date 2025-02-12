@@ -29,6 +29,14 @@ const { videoSrc } = defineProps({
 const videoPlayer = ref(null);
 let player = null;
 
+defineExpose({
+  playVideo: () => {
+    if (player) {
+      player.play();
+    }
+  }
+});
+
 onMounted(() => {
   player = videojs(videoPlayer.value);
 });

@@ -1,6 +1,5 @@
 <template>
   <HeroSection></HeroSection>
-
   <div class="bg container">
     <AdvantagesSection></AdvantagesSection>
     <CoachSection></CoachSection>
@@ -9,7 +8,6 @@
     <Pricing_Plans></Pricing_Plans>
     <SystemRequirements></SystemRequirements>
   </div>
-
 </template>
 
 <script setup>
@@ -22,9 +20,10 @@ import Pricing_Plans from "@/components/Main/Pricing_Plans.vue";
 import SystemRequirements from "@/components/Main/SystemRequirements.vue";
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .bg {
-  @apply pt-36 flex flex-col gap-36;
+  @apply flex flex-col ;
+  padding-top: 9vw;
+  gap: 20vw;
 }
-
 </style>

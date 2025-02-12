@@ -3,12 +3,14 @@
     <p class="title" :class="colorClass">{{ title }}</p>
     <p class="price" v-if="isMonthly"><b>{{ price.monthly }}</b> {{ currency }}</p>
     <p class="price" v-else><b>{{ price.annually }}</b> {{ currency }}</p>
-    <ul class="flex flex-col gap-2">
-      <li v-for="(feature, index) in features" :key="index" class="flex gap-3 text-xl font-thin">
-        <img :src="feature.available ? '/content/icons/true.svg' : '/content/icons/false.svg'" alt="">
-        <span class="tariff__feature-title">{{ feature.name }}</span>
-      </li>
-    </ul>
+    <div class="tariff-card__container">
+      <ul class="flex flex-col gap-2 w-fit">
+        <li v-for="(feature, index) in features" :key="index" class="flex gap-3 text-xl font-thin">
+          <img :src="feature.available ? '/content/icons/true.svg' : '/content/icons/false.svg'" alt="">
+          <span class="tariff__feature-title">{{ feature.name }}</span>
+        </li>
+      </ul>
+    </div>
     <button class="btn">{{$t('Tariff_Plans.buy')}}</button>
   </div>
 </template>
@@ -69,7 +71,12 @@ export default {
   backdrop-filter: blur(100px);
   border-radius: 50px;
   z-index: 1;
-  overflow: hidden; // Чтобы псевдоэлемент не выходил за границы
+  overflow: hidden;
+  transition: transform .3s ease-in;
+  &:hover{
+    transform: translateY(-15px);
+  }
+
   &::before {
     content: "";
     position: absolute;
@@ -108,10 +115,17 @@ export default {
             rgba(255, 255, 255, 0)
     );
   }
+
+  &__container{
+    @media (max-width: 1100px) {
+      @apply flex justify-center;
+    }
+  }
 }
 .title{
   @include text-36-newZelek;
   @apply text-center;
+  line-height: clamp(1.75rem, 4vw, 2.25rem);
 }
 .price{
   @include text-20-white-montserrat;

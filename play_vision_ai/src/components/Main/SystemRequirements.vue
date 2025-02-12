@@ -1,8 +1,8 @@
 <template>
 <div class="requirements">
-  <div class="requirements__title">{{$t('Shoot_Match.title')}}</div>
+  <div class="requirements__title hidden-right">{{$t('Shoot_Match.title')}}</div>
   <div class="requirements__body">
-    <picture class="requirements__image">
+    <picture class="requirements__image hidden-left">
       <source
           srcset="/img/phone-mini.png"
           media="(max-width: 991px)"
@@ -18,7 +18,7 @@
           alt="Background"
       />
     </picture>
-    <div class="requirements__container">
+    <div class="requirements__container hidden-right">
       <div class="requirements__minimum">
         <div class="requirements__minimum-title">
           {{$t('Shoot_Match.requirements.minimum.title')}}
@@ -117,11 +117,11 @@ onUnmounted(() => {
     }
     
     &__body{
-      @apply flex;
+      @apply flex w-full justify-between;
     }
     
     &__container{
-      @apply flex h-max;
+      @apply flex gap-5 h-max;
       @media (max-width:991px) {
         @apply flex-col;
       }

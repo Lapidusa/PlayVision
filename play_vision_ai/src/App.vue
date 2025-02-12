@@ -1,7 +1,8 @@
 <template>
+  <HeaderNavigation></HeaderNavigation>
+
   <div class="blurred-wrapper">
-    <HeaderNavigation></HeaderNavigation>
-    <div class="MainSection">
+    <div class="MainSection" :style="{top: top + 'px'}">
       <MainSection></MainSection>
     </div>
     <FooterNavigation></FooterNavigation>
@@ -15,8 +16,8 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
-import { useI18n } from 'vue-i18n';
+import {onMounted, ref} from "vue";
+import {useI18n} from 'vue-i18n';
 import HeaderNavigation from "@/components/HeaderNavigation.vue";
 import FooterNavigation from "@/components/FooterNavigation.vue";
 import MainSection from "@/components/MainSection.vue";
@@ -27,6 +28,17 @@ export default {
   setup() {
     const { locale } = useI18n();
     const lang = ref(localStorage.getItem('lang') || '');
+    const top = ref(0);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+       if (entry.isIntersecting) {
+         entry.target.classList.add('show');
+       }else{
+         entry.target.classList.remove('show');
+       }
+      });
+    });
 
     onMounted(() => {
       const headerElement  = document.getElementsByClassName("header")[0];
@@ -34,7 +46,7 @@ export default {
       if (headerElement) {
         const heightHeader = headerElement.offsetHeight;
         if (mainSection && window.innerWidth < 767) {
-          mainSection.style.marginTop = `-${heightHeader}px`;
+          top.value = heightHeader
         }
       }
       const isRu = navigator.language;
@@ -50,16 +62,20 @@ export default {
       }
       window.addEventListener('resize', () => {
           if (window.innerWidth < 767) {
-            const heightHeader = headerElement.offsetHeight;
-            mainSection.style.marginTop = `-${heightHeader}px`;
+            top.value = headerElement.offsetHeight
           } else {
-            mainSection.style.marginTop = `0`;
+            top.value = 0
           }
-        });
+      });
+      const hiddenElementsLeft = document.querySelectorAll('.hidden-left');
+      const hiddenElementsRight = document.querySelectorAll('.hidden-right');
+      hiddenElementsLeft.forEach((el) => observer.observe(el))
+      hiddenElementsRight.forEach((el) => observer.observe(el))
     });
 
     return {
-      lang
+      lang,
+      top
     };
   },
 }
@@ -69,22 +85,28 @@ export default {
 #app{
   overflow-x: hidden;
   @apply bg-blue-middle;
-  #app:before{
-    background: rgba(0, 0, 0, 0.07);
-  }
+
   .blurred-wrapper{
-      backdrop-filter: blur(200px);
-      position: relative;
+    background: rgba(0, 0, 0, 0.07);
+
+    backdrop-filter: blur(200px);
+    position: relative;
     z-index: 1;
   }
+}
+.MainSection{
+  position: relative;
 }
 .figure{
   position: absolute;
   z-index: 0;
-
+  max-width: 100%;
   &_1{
     top: 1250px;
     left: 10%;
+    @media (max-width: 1100px) {
+      left: 0;
+    }
   }
   &_2{
     top: 1350px;
@@ -98,10 +120,35 @@ export default {
   &_4{
     top: 3400px;
     left: 16%;
+    @media (max-width: 1100px) {
+      left: 0;
+    }
   }
   &_5{
     top: 3100px;
     right: 12%;
+  }
+}
+.hidden-left{
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(-100%);
+  transition: all 1s ease;
+}
+.hidden-right{
+  opacity: 0;
+  filter: blur(5px);
+  transform: translateX(100%);
+  transition: all 1s;
+}
+.show{
+  opacity: 1;
+  filter: blur(0);
+  transform: translateX(0);
+}
+@media (prefers-reduced-motion) {
+  .hidden-left, .hidden-right{
+    transition: none;
   }
 }
 </style>

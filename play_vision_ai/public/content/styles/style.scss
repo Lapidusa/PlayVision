@@ -9,41 +9,28 @@
   box-sizing: border-box;
 }
 
-
-
 .container{
-  width: 1520px;
   margin: 0 auto;
-
-  @media screen and (max-width: 1560px){
-    width: 90%;
-  }
+  width: 90%;
 }
 header{
   max-width: 1620px;
 }
 
-
-
 ::-webkit-scrollbar {
-  width: 12px; /* Ширина полосы прокрутки */
-  height: 12px; /* Высота полосы прокрутки */
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-blue-dark /* Цвет фона трека */
+  @apply bg-blue-middle
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-green; /* Цвет ползунка */
-  border-radius: 10px; /* Закругление углов ползунка */
+  @apply bg-green;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply border-green-dark;/* Цвет ползунка при наведении */
-}
-
-/* Стили для Firefox */
-html {
-  @apply overflow-y-scroll scrollbar-thin;/* Цвет ползунка и фона трека */
+  @apply border-green-dark;
 }

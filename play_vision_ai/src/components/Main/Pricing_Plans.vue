@@ -1,9 +1,9 @@
 <template>
 <div class="tariff">
-  <div class="tariff__title">
+  <div class="tariff__title hidden-right">
     {{$t('Tariff_Plans.title')}}
   </div>
-  <div class="tariff__toggle">
+  <div class="tariff__toggle hidden-left">
     <button
         class="tariff__toggle-monthly"
         :class="{ active: isMonthly }"
@@ -27,6 +27,7 @@
           :currency="tariff['r/m']"
           :features="tariff.basic.features"
           :isMonthly="isMonthly"
+          class="tariff__card hidden-left"
       />
       <TariffPlan
           color="green"
@@ -35,6 +36,7 @@
           :currency="tariff['r/m']"
           :features="tariff.standard.features"
           :isMonthly="isMonthly"
+          class="tariff__card hidden-left"
       />
       <TariffPlan
           color="red"
@@ -43,6 +45,7 @@
           :currency="tariff['r/m']"
           :features="tariff.pro.features"
           :isMonthly="isMonthly"
+          class="tariff__card hidden-left"
       />
   </div>
 
@@ -85,7 +88,10 @@ onMounted(()=>{
         cursor: pointer;
         transition: background-color 0.3s ease;
         @apply rounded-full bg-blue-light;
-
+        
+        @media (max-width: 550px) {
+          padding: 10px 20px;
+        }
         &.active{
           @apply bg-green-dark text-white rounded-full;
         }
@@ -102,10 +108,17 @@ onMounted(()=>{
           @apply flex-col;
         }
       }
+
     }
 }
   .tariff__title{
     @include text-48-newZelek;
     @apply text-green;
+  }
+  .tariff__card:nth-child(2) {
+    transition-delay: .1s;
+  }
+  .tariff__card:nth-child(3){
+    transition-delay: .2s;
   }
 </style>

@@ -101,83 +101,83 @@
     },
     {
       "stats": "33/54",
-      "football_team": "Динамо",
+      "football_team": "/content/icons/zenit.svg",
       "image": "/img/players/2.jpg",
       "name": "Максим",
       "surname": "Смирнов",
       "age": "10",
       "position": "Защитник",
-      "country": "Украина"
+      "country": "/content/icons/russia.svg"
     },
     {
       "stats": "7/54",
-      "football_team": "Шахтёр",
+      "football_team": "/content/icons/zenit.svg",
       "image": "/img/players/3.jpg",
       "name": "Даниил",
       "surname": "Петров",
       "age": "14",
       "position": "Полузащитник",
-      "country": "Казахстан"
+      "country": "/content/icons/russia.svg"
     },
     {
       "stats": "22/54",
-      "football_team": "БАТЭ",
+      "football_team": "/content/icons/zenit.svg",
       "image": "/img/players/4.jpg",
       "name": "Тимур",
       "surname": "Иванов",
       "age": "8",
       "position": "Нападающий",
-      "country": "Беларусь"
+      "country": "/content/icons/russia.svg"
     },
     {
       "stats": "41/54",
-      "football_team": "Алания",
+      "football_team": "/content/icons/zenit.svg",
       "image": "/img/players/5.jpg",
       "name": "Александр",
       "surname": "Морозов",
       "age": "16",
       "position": "Вратарь",
-      "country": "Россия"
+      "country": "/content/icons/russia.svg"
     },
     {
       "stats": "9/54",
-      "football_team": "ЦСКА",
+      "football_team": "/content/icons/zenit.svg",
       "image": "/img/players/6.jpg",
       "name": "Егор",
       "surname": "Лебедев",
       "age": "11",
       "position": "Защитник",
-      "country": "Россия"
+      "country": "/content/icons/russia.svg"
     },
     {
       "stats": "18/54",
-      "football_team": "Кайрат",
+      "football_team": "/content/icons/zenit.svg",
       "image": "/img/players/7.jpg",
       "name": "Илья",
       "surname": "Кузнецов",
       "age": "13",
       "position": "Полузащитник",
-      "country": "Казахстан"
+      "country": "/content/icons/russia.svg"
     },
     {
       "stats": "27/54",
-      "football_team": "Шахтёр",
+      "football_team": "/content/icons/zenit.svg",
       "image": "/img/players/8.jpg",
       "name": "Никита",
       "surname": "Соколов",
       "age": "15",
       "position": "Нападающий",
-      "country": "Украина"
+      "country": "/content/icons/russia.svg"
     },
     {
       "stats": "5/54",
-      "football_team": "Тобол",
+      "football_team": "/content/icons/zenit.svg",
       "image": "/img/players/9.jpg",
       "name": "Матвей",
       "surname": "Фёдоров",
       "age": "9",
       "position": "Защитник",
-      "country": ""
+      "country": "/content/icons/russia.svg"
     }
   ],
   "Tariff_Plans": {

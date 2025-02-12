@@ -1,14 +1,14 @@
 <template>
-  <div class="hero" :style="{ height: bgHeight + 'px',marginTop: marginTop + 'px' }">
+  <div class="hero" :style="{ height: bgHeight + 'px' }">
     <div class="hero__bg" :style="{ width: bgWidth + 'px', margin: '0 auto' }">
       <div class="hero__gradient"></div>
     </div>
     <div class="hero__container">
       <div class="container">
         <div class="hero__text">
-          <p class="hero__text-title" v-html="$t('Hero.Title')">
+          <p class="hero__text-title hidden-left" v-html="$t('Hero.Title')">
           </p>
-          <p class="hero__text-description">{{ $t('Hero.Description.Review') }} <span class="text-green">{{ $t('Hero.Description.Your') }}</span> {{ $t('Hero.Description.Game') }}
+          <p class="hero__text-description hidden-right">{{ $t('Hero.Description.Review') }} <span class="text-green">{{ $t('Hero.Description.Your') }}</span> {{ $t('Hero.Description.Game') }}
           </p>
         </div>
       </div>
@@ -44,25 +44,13 @@
   const bgWidth = ref(0);
   const backgroundImage = ref(null);
   const header = ref(null);
-  const marginTop = ref(0);
 
   const setBgHeight = () => {
     if (backgroundImage.value) {
       bgHeight.value = backgroundImage.value.naturalHeight;
       bgWidth.value = backgroundImage.value.naturalWidth;
-      if (header.value && window.innerWidth < 767) {
-        marginTop.value = header.value.offsetHeight
-      }
     }
   };
-
-  window.addEventListener('resize', () => {
-    if (window.innerWidth < 767) {
-      marginTop.value = header.value.offsetHeight
-    } else {
-      marginTop.value = 0;
-    }
-  });
 
   onMounted(()=>{
     header.value = document.getElementsByClassName('header')[0];
@@ -107,10 +95,10 @@
     }
 
     &__text {
-      @apply flex flex-col gap-28 text-white;
-      @include text-48-newZelek;
+      @apply flex flex-col gap-28 text-white overflow-hidden;
+      @include text-48-newZelek ;
       @media (max-width: 767px) {
-        @apply text-center gap-12 absolute bottom-3.5 w-full;
+        @apply text-center gap-12 absolute bottom-3.5;
       }
     }
   }

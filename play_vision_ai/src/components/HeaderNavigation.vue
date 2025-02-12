@@ -1,10 +1,10 @@
 <template>
-  <header class="header">
+  <header class="header ">
     <div class="header__container container">
-      <div class="header__logo">
+      <div class="header__logo hidden-left">
         <img src="../../public/content/icons/logo.svg" alt="logo">
       </div>
-      <nav class="header__nav">
+      <nav class="header__nav hidden-right">
         <ul class="header__nav-list">
           <li class="header__nav-item">
             <a class="header__nav-link" href="#News">{{ $t('Menu.News') }}</a>
@@ -31,7 +31,7 @@
   </header>
 
   <!--Modal LogReg-->
-  <div id="modalLogReg" tabindex="-1" v-if="isModalOpen" class="">
+  <div id="modalLogReg" tabindex="-1" v-if="isModalOpen" class="modal">
     <div class="">
       <div class="">
         <button @click="toggleModal" class="">
@@ -86,10 +86,9 @@
     height: 75px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(100px);
-
     @media (max-width: 991px) {
-      @apply rounded-none w-full top-0 pt-4 h-auto;
-      padding-top: 52px;
+      @apply rounded-none w-full top-0 pt-4 h-auto fixed bg-blue-middle;
+      padding-top: 30px;
       padding-bottom: 20px;
     }
 
@@ -100,13 +99,16 @@
         @apply block;
       }
     }
+
     &__logo{
       flex-shrink: 0;
       margin: auto 0;
     }
+
     &__container {
       @apply flex justify-between m-auto h-full;
     }
+
     &__nav{
       @apply flex;
 
@@ -119,6 +121,7 @@
           @apply hidden;
         }
       }
+
       &-item{
         @apply font-bold flex items-center justify-center;
         @include text-20-white-montserrat-hover;
@@ -128,6 +131,7 @@
 
         &:last-child{
           @include btn-green-border-with-animation;
+
           & {
             padding: 12px 23px;
             margin-left: 10px;
@@ -136,4 +140,60 @@
       }
     }
   }
+.modal {
+  &__overlay {
+    @apply fixed inset-0 bg-blue-dark bg-opacity-50 z-40;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    @apply bg-white rounded-lg shadow-lg p-6 w-96 z-50 relative;
+    animation: fadeIn 0.3s ease-in-out;
+
+    h2 {
+      @apply text-3xl font-semibold mb-4;
+    }
+
+    p {
+      @apply mb-4 text-grey;
+    }
+
+    button {
+      @apply px-4 py-2 rounded-lg font-bold;
+      transition: background-color 0.3s ease;
+
+      &.confirm {
+        @apply bg-green text-white hover:bg-green-dark;
+      }
+
+      &.cancel {
+        @apply bg-grey text-grey hover:bg-grey-opacity-25;
+      }
+
+      &.close {
+        @apply absolute top-2 right-2 text-grey hover:text-grey-opacity-25;
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        svg {
+          @apply w-6 h-6;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 </style>

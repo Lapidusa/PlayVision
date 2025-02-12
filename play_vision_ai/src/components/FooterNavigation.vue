@@ -1,7 +1,7 @@
 <template>
-<footer class="footer">
+<footer class="footer" :style="{top: top}">
   <div class="footer__container container">
-    <div class="footer__nav">
+    <div class="footer__nav hidden-left">
       <div class="footer__nav-logo">
         <img src="../../public/content/icons/logo.svg">
       </div>
@@ -20,7 +20,7 @@
         </li>
       </ul>
     </div>
-    <div class="footer__contactUs">
+    <div class="footer__contactUs hidden-right">
       <p class="footer__contactUs-text">{{$t('Menu.Contact_us')}}</p>
       <a href="https://mail.google.com/" class="footer__contactUs-link">
         playvisionai@mail.ru
@@ -36,13 +36,32 @@
 </template>
 
 <script setup>
+  import {onMounted, ref} from "vue";
 
+  const top = ref(0);
+  onMounted(() => {
+    const headerElement  = document.getElementsByClassName("header")[0];
+    const footer = document.getElementsByClassName("footer")[0];
+    if (headerElement) {
+      if (footer && window.innerWidth < 767) {
+        top.value = headerElement.offsetHeight
+        console.log(headerElement.offsetHeight)
+      }
+    }
+    window.addEventListener('resize', () => {
+      if (window.innerWidth < 767) {
+        top.value = headerElement.offsetHeight
+      } else {
+        top.value = 0
+      }
+    });
+  });
 </script>
 
 <style scoped lang="scss">
 @use '../../public/content/styles/_mixins' as *;
   .footer{
-    @apply w-full py-12 bg-blue-dark;
+    @apply w-full py-12 bg-blue-dark relative;
 
     &__container{
       @apply flex justify-between

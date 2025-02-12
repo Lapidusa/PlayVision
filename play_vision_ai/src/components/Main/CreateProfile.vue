@@ -1,6 +1,6 @@
 <template>
 <div class="create">
-  <div class="create__text">
+  <div class="create__text hidden-left">
     <div class="create__title">{{ $t('Create_Profile.title')}}</div>
     <div class="create__list">
       <div v-for="index in 3" :key="index" class="create__item">
@@ -13,7 +13,7 @@
     </div>
     <div class="create__"></div>
   </div>
-  <div class="create__slider">
+  <div class="create__slider hidden-right">
     <PlayersSlider></PlayersSlider>
   </div>
 </div>
@@ -49,7 +49,7 @@ import PlayersSlider from "@/components/Main/PlayersSlider.vue";
   margin: 0 2.5px;
 }
 .create{
-  @apply flex gap-24 text-white overflow-hidden;
+  @apply flex gap-2 justify-between text-white overflow-hidden;
   width: 100%;
   @media screen  and (max-width: 650px) {
 @apply flex-col;
@@ -57,6 +57,9 @@ import PlayersSlider from "@/components/Main/PlayersSlider.vue";
   &__title{
     @include text-48-newZelek;
     @apply text-green;
+  }
+  &__list{
+    @apply flex flex-col gap-2;
   }
   &__slider{
     flex-grow: 1;
@@ -67,7 +70,7 @@ import PlayersSlider from "@/components/Main/PlayersSlider.vue";
     @include text-20-white-montserrat;
   }
   &__text{
-    @apply font-light flex flex-col items-baseline;
+    @apply font-light flex flex-col gap-5 items-baseline w-full;
     flex-grow: 1;
   }
   &__button{

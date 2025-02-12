@@ -1,7 +1,7 @@
 <template>
   <div class="news">
-    <div class="news__title">{{ $t('News.title') }}</div>
-    <div class="news__swiper">
+    <div class="news__title hidden-right">{{ $t('News.title') }}</div>
+    <div class="news__swiper hidden-left">
       <swiper
           :modules="[Pagination]"
           :slides-per-view="3"
@@ -10,7 +10,7 @@
               :breakpoints="{
           1200: { slidesPerView: 3 },
           768: { slidesPerView: 2 },
-          480: { slidesPerView: 1 }
+          0: { slidesPerView: 1 }
         }">
         <swiper-slide v-for="index in 4" :key="index" class="news__card">
           <div class="news__card-blur"></div>
@@ -63,17 +63,17 @@ const images = [
 }
 .news {
   @apply flex flex-col gap-24;
-  //overflow-x: hidden;
   overflow-y: visible !important;
 
   &__title {
     @include text-48-newZelek;
     @apply text-green text-center;
   }
+
   &__swiper{
-    //overflow-x: hidden !important;
     overflow-y: visible !important;
   }
+
   &__card {
     position: relative;
     width: 200px;
