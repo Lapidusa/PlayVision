@@ -8,8 +8,13 @@
   @apply font-new_zelek;
 }
 
+@mixin text-24-newZelek {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  @apply font-new_zelek;
+}
+
 @mixin text-20-white-montserrat {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
   @apply text-white font-montserrat;
   transition: all 0.5s ease-in-out;
 }
@@ -25,33 +30,41 @@
 
 @mixin background-hover($url1, $url2) {
   background-image: url(#{$url1});
-  transition: background-image 0.3s ease;
+  transition: all 0.3s ease;
   background-size: cover;
   &:hover {
     background-image: url(#{$url2});
+    transform: rotate(360deg);
   }
 }
 
 @mixin btn-green {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  @include text-20-white-montserrat;
   @apply bg-green text-blue-dark font-bold font-montserrat rounded-full;
   @apply hover:bg-green-dark transition duration-500 ease-in-out;
-  padding: 15px 21px;
+  padding: 12px 23px;
+  @media (max-width: 600px){
+    padding: 5px;
+  }
 }
 
 @mixin btn-green-border {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  @include text-20-white-montserrat;
   @apply border-4 border-green text-white font-bold font-montserrat rounded-full;
   @apply hover:bg-green hover:text-blue-dark transition duration-500 ease-in-out;
-  padding: 15px 21px;
-
+  padding: 12px 23px;
+  @media (max-width: 600px){
+    padding: 5px;
+  }
 }
 @mixin btn-green-border-with-animation{
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  @include text-20-white-montserrat;
   @apply border-4 border-green text-white font-bold font-montserrat rounded-full;
   @apply hover:bg-green hover:text-blue-dark transition duration-500 ease-in-out;
-  padding: 15px 21px;
-
+  padding: 12px 23px;
+  @media (max-width: 600px){
+    padding: 5px;
+  }
   animation: blink-shadow 2s infinite;
 
   @keyframes blink-shadow {

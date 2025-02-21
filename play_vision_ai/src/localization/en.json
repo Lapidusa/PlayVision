@@ -9,14 +9,21 @@
   },
 
   "Authorization": {
+    "Log_in_or_create": "Log in or create a profile",
     "Login": "Login",
     "Create_profile": "Create a profile",
-    "Get the code": "Get the code",
-    "Or_log": "or log in via"
+    "Get_the_code": "Get the code",
+    "Agreement_start": "I agree",
+    "Agreement_end": " to the terms of use of the trading platform and refund",
+    "Or_log": "or log in via",
+    "Google": "Google",
+    "Facebook": "Facebook"
   },
 
   "Menu": {
+    "Menu": "Menu",
     "News": "News",
+    "Main": "Main",
     "Price": "Price",
     "Contacts": "Contacts",
     "Login": "Login",
@@ -86,12 +93,104 @@
     "position": "Position",
     "country": "Country"
   },
-
+  "Players": [
+    {
+      "stats": "15/54",
+      "football_team": "/content/icons/zenit.svg",
+      "image": "/img/players/1.jpg",
+      "name": "Artem",
+      "surname": "Kovalev",
+      "age": "12",
+      "position": "Forward",
+      "country": "/content/icons/russia.svg"
+    },
+    {
+      "stats": "33/54",
+      "football_team": "/content/icons/zenit.svg",
+      "image": "/img/players/2.jpg",
+      "name": "Maxim",
+      "surname": "Smirnov",
+      "age": "10",
+      "position": "Defender",
+      "country": "/content/icons/russia.svg"
+    },
+    {
+      "stats": "7/54",
+      "football_team": "/content/icons/zenit.svg",
+      "image": "/img/players/3.jpg",
+      "name": "Daniil",
+      "surname": "Petrov",
+      "age": "14",
+      "position": "Midfielder",
+      "country": "/content/icons/russia.svg"
+    },
+    {
+      "stats": "22/54",
+      "football_team": "/content/icons/zenit.svg",
+      "image": "/img/players/4.jpg",
+      "name": "Timur",
+      "surname": "Ivanov",
+      "age": "8",
+      "position": "Forward",
+      "country": "/content/icons/russia.svg"
+    },
+    {
+      "stats": "41/54",
+      "football_team": "/content/icons/zenit.svg",
+      "image": "/img/players/5.jpg",
+      "name": "Alexander",
+      "surname": "Morozov",
+      "age": "16",
+      "position": "Goalkeeper",
+      "country": "/content/icons/russia.svg"
+    },
+    {
+      "stats": "9/54",
+      "football_team": "/content/icons/zenit.svg",
+      "image": "/img/players/6.jpg",
+      "name": "Egor",
+      "surname": "Lebedev",
+      "age": "11",
+      "position": "Defender",
+      "country": "/content/icons/russia.svg"
+    },
+    {
+      "stats": "18/54",
+      "football_team": "/content/icons/zenit.svg",
+      "image": "/img/players/7.jpg",
+      "name": "Ilya",
+      "surname": "Kuznetsov",
+      "age": "13",
+      "position": "Midfielder",
+      "country": "/content/icons/russia.svg"
+    },
+    {
+      "stats": "27/54",
+      "football_team": "/content/icons/zenit.svg",
+      "image": "/img/players/8.jpg",
+      "name": "Nikita",
+      "surname": "Sokolov",
+      "age": "15",
+      "position": "Forward",
+      "country": "/content/icons/russia.svg"
+    },
+    {
+      "stats": "5/54",
+      "football_team": "/content/icons/zenit.svg",
+      "image": "/img/players/9.jpg",
+      "name": "Matvey",
+      "surname": "Fyodorov",
+      "age": "9",
+      "position": "Defender",
+      "country": "/content/icons/russia.svg"
+    }
+  ],
   "Tariff_Plans": {
     "title": "TARIFF PLANS",
     "monthly": "Monthly",
-    "Annually": "Annually",
+    "annually": "Annually",
     "r/m": "RUB/month",
+    "buy": "Buy",
     "basic": {
       "title": "BASIC",
       "price": {

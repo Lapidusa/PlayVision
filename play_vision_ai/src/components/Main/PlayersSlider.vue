@@ -7,7 +7,9 @@
       :breakpoints="{
             1340: { slidesPerView: 3 },
             1024: { slidesPerView: 2 },
-            0: { slidesPerView: 1 }
+            650: { slidesPerView: 1 },
+            480: { slidesPerView: 2 },
+            0: { slidesPerView: 1 },
           }">
     <swiper-slide v-for="(index) in 9" :key="index" class="player__card " style="width: fit-content">
       <div class="player__container">
@@ -59,9 +61,9 @@ import 'swiper/css/pagination';
     @apply flex flex-col p-4 bg-blue-light items-center;
     width: fit-content;
     background: url("../../../public/content/icons/cardBackground.svg") no-repeat top center;
-    background-size: contain; // Фон адаптируется под размеры карточки
-    border-radius: 10px; // Скругление углов
-    overflow: hidden; // Скрываем всё, что выходит за границы карточки
+    background-size: contain;
+    border-radius: 10px;
+    overflow: hidden;
   }
   &__age,&__position,&__country{
     @apply flex flex-col gap-2.5;
@@ -85,7 +87,7 @@ import 'swiper/css/pagination';
     }
   }
   &__container{
-    @apply relative w-full;
+    @apply relative ;
   }
   &__stats{
     @include text-12-montserrat;
@@ -106,9 +108,6 @@ import 'swiper/css/pagination';
     top:-10px;
     &-title{
       @apply text-white opacity-50;
-    }
-    &-data{
-
     }
   }
   &__name{

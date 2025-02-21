@@ -1,5 +1,5 @@
 <template>
-<footer class="footer" :style="{top: top}">
+<footer class="footer" id="contacts" :style="{top: top}">
   <div class="footer__container container">
     <div class="footer__nav hidden-left">
       <div class="footer__nav-logo">
@@ -7,7 +7,7 @@
       </div>
       <ul class="footer__nav-list">
         <li class="footer__nav-item">
-          <a class="footer__nav-link" href="#News">{{ $t('Menu.News') }}</a>
+          <a class="footer__nav-link" href="#news">{{ $t('Menu.News') }}</a>
         </li>
         <li class="footer__nav-item">
           <a class="footer__nav-link" href="#Price">{{ $t('Menu.Price') }}</a>
@@ -22,13 +22,13 @@
     </div>
     <div class="footer__contactUs hidden-right">
       <p class="footer__contactUs-text">{{$t('Menu.Contact_us')}}</p>
-      <a href="https://mail.google.com/" class="footer__contactUs-link">
+      <a href="https://mail.google.com/" target="_blank" class="footer__contactUs-link">
         playvisionai@mail.ru
       </a>
       <div class="footer__contactUs-icons">
-        <a href="https://t.me/romver_o" class="footer__contactUs-telegram"></a>
-        <a href="https://vk.com/r.zverev2000" class="footer__contactUs-vk"></a>
-        <a href="https://www.youtube.com/" class="footer__contactUs-youtube"></a>
+        <a href="https://t.me/romver_o" target="_blank" class="footer__contactUs-telegram"></a>
+        <a href="https://vk.com/r.zverev2000" target="_blank" class="footer__contactUs-vk"></a>
+        <a href="https://www.youtube.com/" target="_blank" class="footer__contactUs-youtube"></a>
       </div>
     </div>
   </div>
@@ -58,7 +58,7 @@
   });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @use '../../public/content/styles/_mixins' as *;
   .footer{
     @apply w-full py-12 bg-blue-dark relative;
@@ -91,6 +91,7 @@
       }
       &-link{
         @include text-20-white-montserrat;
+        font-size: clamp(1.125rem, 1.75vw, 1.25rem);
         @apply font-light hover:text-grey;
       }
       &-icons{
@@ -109,11 +110,10 @@
         width: 57px;
         height: 57px;
         @media (max-width: 1100px) {
-          width: 30px;
-          height: 30px;
+          width: 40px;
+          height: 40px;
         }
       }
     }
-
   }
 </style>

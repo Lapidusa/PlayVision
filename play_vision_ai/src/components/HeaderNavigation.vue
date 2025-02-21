@@ -1,199 +1,294 @@
 <template>
-  <header class="header ">
+  <header class="header">
     <div class="header__container container">
-      <div class="header__logo hidden-left">
-        <img src="../../public/content/icons/logo.svg" alt="logo">
+      <div class="header__logo">
+        <img src="../../public/content/icons/logo.svg" alt="logo" />
       </div>
-      <nav class="header__nav hidden-right">
+      <nav class="header__nav">
         <ul class="header__nav-list">
           <li class="header__nav-item">
-            <a class="header__nav-link" href="#News">{{ $t('Menu.News') }}</a>
+            <a class="header__nav-action" href="#news">{{ $t('Menu.News') }}</a>
           </li>
           <li class="header__nav-item">
-            <a class="header__nav-link" href="#Price">{{ $t('Menu.Price') }}</a>
+            <a class="header__nav-action" href="#price">{{ $t('Menu.Price') }}</a>
           </li>
-          <li class="header__nav-item"><a class="header__nav-link" href="#Contacts">{{ $t('Menu.Contacts') }}</a></li>
           <li class="header__nav-item">
-            <button @click="toggleModal" class="header__nav-button" type="button">
+            <a class="header__nav-action" href="#contacts">{{ $t('Menu.Contacts') }}</a>
+          </li>
+          <li class="header__nav-item">
+            <button @click="toggleMenu" class="header__nav-action" type="button">
               {{ $t('Menu.Login') }}
             </button>
           </li>
-          <li class="header__nav-item border"><button @click="toggleModal" class="header__nav-button" type="button">
-            {{ $t('Menu.Try_it_for_free') }}
-          </button>
+          <li class="header__nav-item relative">
+            <button
+                @click="toggleDropdown"
+                class="header__nav-action"
+                @click.stop
+            >
+              <img src="../../public/content/icons/lang.svg" alt="Language" class="w-5 h-5" />
+              {{ lang }}
+            </button>
+            <div
+                v-if="isOpenDrop"
+                class="dropdown-menu"
+            >
+              <button
+                  @click="changeLanguage('ru')"
+                  class="flex items-center w-full px-4 py-2 text-sm hover:text-green hover:bg-blue-light"
+              >
+                <img src="/content/icons/russia.svg" alt="Русский" class="w-5 h-5 mr-2" />
+                Русский
+              </button>
+              <button
+                  @click="changeLanguage('en')"
+                  class="flex items-center w-full px-4 py-2 text-sm hover:text-green hover:bg-blue-light"
+              >
+                <img src="/content/icons/england.svg" alt="English" class="w-5 h-5 mr-2" />
+                English
+              </button>
+            </div>
+          </li>
+          <li class="header__nav-item">
+            <ModalLogIn custom-class="btn-animated" :text-button="$t('Menu.Try_it_for_free')"></ModalLogIn>
           </li>
         </ul>
-        <button @click="openMenu" class="header__hamburger">
+        <button @click="toggleMenu" class="header__hamburger">
           <img src="../../public/content/icons/menu.svg" alt="menu" />
         </button>
       </nav>
     </div>
   </header>
 
-  <!--Modal LogReg-->
-  <div id="modalLogReg" tabindex="-1" v-if="isModalOpen" class="modal">
-    <div class="">
-      <div class="">
-        <button @click="toggleModal" class="">
-          <svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-          </svg>
-          <span class="sr-only">Close modal</span>
+  <div v-if="isMenuOpen" class="fullscreen-menu ">
+    <div class="fullscreen-menu__header">
+      <div class="fullscreen-menu__header-container">
+        <h2>{{$t('Menu.Menu')}}</h2>
+        <button @click="toggleMenu" class="fullscreen-menu__close">
+          <img src="../../public/content/icons/close.svg" alt="menu" />
         </button>
-        <div class="">
-          <h3 class="">Are you sure you want to delete this product?</h3>
-          <button @click="confirmDelete" type="button" class="r">
-            Yes, I'm sure
-          </button>
-          <button @click="toggleModal" type="button" class="">No, cancel</button>
-        </div>
       </div>
+      <hr />
+      <ul class="fullscreen-menu__list">
+        <li><a href="#app" @click="toggleMenu">{{$t('Menu.Main')}}</a></li>
+        <li><a href="#news" @click="toggleMenu">{{$t('Menu.News')}}</a></li>
+        <li><a href="#price" @click="toggleMenu">{{$t('Menu.Price')}}</a></li>
+        <li><a href="#login" @click="toggleMenu">{{$t('Menu.Login')}}</a></li>
+      </ul>
     </div>
-  </div>
-
-  <div
-    id="static-modal"
-    data-modal-backdrop="static"
-
-    aria-hidden="true"
-    :class="{'hidden': !isModalOpen, 'fixed inset-0 flex items-center justify-center bg-black bg-opacity-50': isModalOpen}"
-  >
-    <div class="bg-white rounded-lg shadow-lg p-6 w-96 z-50 relative">
-      <h2 class="text-3xl font-semibold mb-4">Вход в аккаунт</h2>
-      <p class="mb-4">Введите номер телефона, чтобы войти или зарегистрироваться</p>
+    <div class="fullscreen-menu__footer">
+      <p>{{$t('Menu.Contact_us')}}</p>
+      <a href="mailto:playvisionai@mail.ru" target="_blank">playvisionai@mail.ru</a>
+      <div class="flex gap-4 justify-end">
+        <a href="https://t.me/romver_o" target="_blank" class="footer__contactUs-telegram"></a>
+        <a href="https://vk.com/r.zverev2000" target="_blank" class="footer__contactUs-vk"></a>
+        <a href="https://www.youtube.com/" target="_blank" class="footer__contactUs-youtube"></a>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-  import { ref } from 'vue';
+import ModalLogIn from "@/components/Main/ModalLogIn.vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
+import { useI18n } from "vue-i18n";
 
-  const isModalOpen = ref(false);
+const { locale } = useI18n();
+const isOpenDrop = ref(false);
+const isMenuOpen = ref(false);
+const lang = ref("ru");
 
-  const toggleModal = () => {
-    isModalOpen.value = !isModalOpen.value;
-  };
+const changeLanguage = (langValue) => {
+  locale.value = langValue;
+  lang.value = langValue;
+  localStorage.setItem('lang', langValue);
+  isOpenDrop.value = !isOpenDrop.value;
+};
+
+const toggleDropdown = () => {
+  isOpenDrop.value = !isOpenDrop.value;
+};
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+  document.body.style.overflow = isMenuOpen.value ? "hidden" : '';
+};
+const handleClickOutside = (event) => {
+  const dropdown = document.querySelector(".dropdown-menu");
+  const button = document.querySelector(".header__nav-button");
+  if (dropdown && button) {
+    if (!dropdown.contains(event.target) && !button.contains(event.target)) {
+      isOpenDrop.value = false;
+    }
+  } else {
+    isOpenDrop.value = false;
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("click", handleClickOutside);
+  lang.value = localStorage.getItem('lang');
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("click", handleClickOutside);
+});
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
 @use '../../public/content/styles/_mixins' as *;
-  .header{
-    @apply bg-blue-middle-opacity-75 font-new_zelek
-    rounded-full fixed top-3 z-50;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 98%;
-    height: 75px;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(100px);
-    @media (max-width: 991px) {
-      @apply rounded-none w-full top-0 pt-4 h-auto fixed bg-blue-middle;
-      padding-top: 30px;
-      padding-bottom: 20px;
-    }
 
-    &__hamburger{
-      @apply hidden;
+.header {
+  @apply bg-blue-middle-opacity-75 font-new_zelek rounded-full fixed top-3 z-50;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 98%;
+  height: 75px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(100px);
 
-      @media screen and (max-width: 1061px){
-        @apply block;
-      }
-    }
-
-    &__logo{
-      flex-shrink: 0;
-      margin: auto 0;
-    }
-
-    &__container {
-      @apply flex justify-between m-auto h-full;
-    }
-
-    &__nav{
-      @apply flex;
-
-      &-list{
-        @apply flex gap-2 my-auto;
-        @media screen and (max-width: 1115px){
-          @apply gap-0;
-        }
-        @media screen and (max-width: 1061px){
-          @apply hidden;
-        }
-      }
-
-      &-item{
-        @apply font-bold flex items-center justify-center;
-        @include text-20-white-montserrat-hover;
-        padding: 9px 15px;
-        font-size: 20px;
-        line-height: 20px;
-
-        &:last-child{
-          @include btn-green-border-with-animation;
-
-          & {
-            padding: 12px 23px;
-            margin-left: 10px;
-          }
-        }
-      }
-    }
-  }
-.modal {
-  &__overlay {
-    @apply fixed inset-0 bg-blue-dark bg-opacity-50 z-40;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  @media (max-width: 991px) {
+    @apply rounded-none w-full top-0 pt-4 h-auto fixed bg-blue-middle;
+    padding-top: 30px;
+    padding-bottom: 20px;
   }
 
-  &__content {
-    @apply bg-white rounded-lg shadow-lg p-6 w-96 z-50 relative;
-    animation: fadeIn 0.3s ease-in-out;
+  &__hamburger {
+    @apply hidden;
 
-    h2 {
-      @apply text-3xl font-semibold mb-4;
+    @media screen and (max-width: 1280px) {
+      @apply block;
+    }
+  }
+
+  &__logo {
+    flex-shrink: 0;
+    margin: auto 0;
+  }
+
+  &__container {
+    @apply flex justify-between m-auto h-full;
+  }
+
+  &__nav {
+    @apply flex;
+
+    &-list {
+      @apply flex gap-2 my-auto items-center;
+
+      @media screen and (max-width: 1115px) {
+        @apply gap-0;
+      }
+
+      @media screen and (max-width: 1280px) {
+        @apply hidden;
+      }
     }
 
-    p {
-      @apply mb-4 text-grey;
+    &-item {
+      @apply font-bold flex items-center justify-center h-fit;
+      @include text-20-white-montserrat-hover;
+      line-height: 20px;
+
+      &:nth-child(5) .header__nav-action{
+        text-transform: uppercase !important;
+        @apply flex gap-3;
+      }
     }
 
-    button {
-      @apply px-4 py-2 rounded-lg font-bold;
-      transition: background-color 0.3s ease;
-
-      &.confirm {
-        @apply bg-green text-white hover:bg-green-dark;
-      }
-
-      &.cancel {
-        @apply bg-grey text-grey hover:bg-grey-opacity-25;
-      }
-
-      &.close {
-        @apply absolute top-2 right-2 text-grey hover:text-grey-opacity-25;
-        background: none;
-        border: none;
-        cursor: pointer;
-
-        svg {
-          @apply w-6 h-6;
-        }
-      }
+    &-action{
+      padding: 9px 15px;
     }
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+.header__nav-item-button {
+  position: relative;
+}
+
+.dropdown-menu {
+  @apply absolute left-0 z-50 w-40 bg-blue-middle rounded-md shadow-lg;
+  transform: translateY(70px);
+}
+
+.fullscreen-menu {
+ @apply bg-blue-middle fixed top-0 left-0 w-full h-full font-light;
+ @include text-20-white-montserrat;
+ font-size: clamp(1.125rem, 1.75vw, 1.25rem);
+ z-index: 1000;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ padding: 30px 20px;
+  &__header-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+   h2 {
+     font-size: 24px;
+     font-weight: bold;
+   }
+
+   &__close {
+     font-size: 24px;
+     background: none;
+     border: none;
+     color: white;
+     cursor: pointer;
+   }
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+
+  hr {
+   border: 1px solid rgba(255, 255, 255, 0.5);
+   margin: 20px 0;
+  }
+
+  &__list {
+   list-style: none;
+   padding: 0;
+
+   li {
+     a {
+       color: white;
+       text-decoration: none;
+       font-size: 18px;
+       font-weight: bold;
+       @apply transition duration-500 ease-in-out hover:text-green-dark ;
+     }
+   }
+  }
+
+  &__footer {
+   text-align: center;
+   @apply flex flex-col items-end gap-4;
+   &__icons {
+     display: flex;
+     justify-content: center;
+     align-items: end;
+     gap: 10px;
+
+     img {
+       width: 24px;
+       height: 24px;
+       cursor: pointer;
+
+       &:hover {
+         filter: brightness(1.5);
+       }
+     }
+   }
   }
 }
+
+.footer__contactUs{
+  &-telegram, &-vk, &-youtube{
+    width: 57px;
+    height: 57px;
+    @media (max-width: 1100px) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
 </style>

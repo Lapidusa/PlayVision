@@ -7,6 +7,7 @@
 
 *{
   box-sizing: border-box;
+  //line-height: normal;
 }
 
 .container{
@@ -16,7 +17,10 @@
 header{
   max-width: 1620px;
 }
-
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+}
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;

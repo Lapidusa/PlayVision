@@ -7,11 +7,7 @@
         <p class="create__text">{{ $t(`Create_Profile.list.${index}.text`) }}</p>
       </div>
     </div>
-    <div class="create__button border"><button @click="toggleModal" class="header__nav-button" type="button">
-      {{ $t('Menu.Try_it_for_free') }}
-    </button>
-    </div>
-    <div class="create__"></div>
+    <ModalLogIn custom-class="btn-animated" id-checkbox="checkbox3"  :text-button="$t('Menu.Try_it_for_free')"></ModalLogIn>
   </div>
   <div class="create__slider hidden-right">
     <PlayersSlider></PlayersSlider>
@@ -21,6 +17,7 @@
 
 <script setup>
 import PlayersSlider from "@/components/Main/PlayersSlider.vue";
+import ModalLogIn from "@/components/Main/ModalLogIn.vue";
 </script>
 
 <style scoped lang="scss" >
@@ -49,13 +46,14 @@ import PlayersSlider from "@/components/Main/PlayersSlider.vue";
   margin: 0 2.5px;
 }
 .create{
-  @apply flex gap-2 justify-between text-white overflow-hidden;
+  @apply flex gap-5 justify-between text-white;
   width: 100%;
   @media screen  and (max-width: 650px) {
-@apply flex-col;
+    @apply flex-col;
   }
+
   &__title{
-    @include text-48-newZelek;
+    @include text-36-newZelek;
     @apply text-green;
   }
   &__list{
@@ -70,12 +68,11 @@ import PlayersSlider from "@/components/Main/PlayersSlider.vue";
     @include text-20-white-montserrat;
   }
   &__text{
-    @apply font-light flex flex-col gap-5 items-baseline w-full;
+    @apply font-light flex flex-col gap-8 w-full;
     flex-grow: 1;
   }
   &__button{
     @include btn-green-border-with-animation;
-
     padding: 12px 23px;
   }
 }

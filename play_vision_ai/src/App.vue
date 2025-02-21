@@ -41,36 +41,26 @@ export default {
     });
 
     onMounted(() => {
-      const headerElement  = document.getElementsByClassName("header")[0];
-      const mainSection = document.getElementsByClassName("MainSection")[0];
-      if (headerElement) {
-        const heightHeader = headerElement.offsetHeight;
-        if (mainSection && window.innerWidth < 767) {
-          top.value = heightHeader
+      const isRu = navigator.language;
+      if (lang.value !== '' ) {
+        locale.value = lang.value;
+      }else{
+        if (isRu === 'ru-RU' || isRu === 'ru') {
+          lang.value = 'ru';
+          localStorage.setItem('lang', 'ru');
+          locale.value = 'ru';
+        } else {
+          lang.value = 'en';
+          localStorage.setItem('lang', 'en');
+          locale.value = 'en';
         }
       }
-      const isRu = navigator.language;
 
-      if (isRu === 'ru-RU' || isRu === 'ru') {
-        lang.value = 'ru';
-        localStorage.setItem('lang', 'ru');
-        locale.value = 'ru';
-      } else {
-        lang.value = 'en';
-        localStorage.setItem('lang', 'en');
-        locale.value = 'en';
-      }
-      window.addEventListener('resize', () => {
-          if (window.innerWidth < 767) {
-            top.value = headerElement.offsetHeight
-          } else {
-            top.value = 0
-          }
-      });
       const hiddenElementsLeft = document.querySelectorAll('.hidden-left');
       const hiddenElementsRight = document.querySelectorAll('.hidden-right');
-      hiddenElementsLeft.forEach((el) => observer.observe(el))
-      hiddenElementsRight.forEach((el) => observer.observe(el))
+
+      hiddenElementsLeft.forEach((el) => observer.observe(el));
+      hiddenElementsRight.forEach((el) => observer.observe(el));
     });
 
     return {

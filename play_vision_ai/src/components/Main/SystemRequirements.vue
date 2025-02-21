@@ -3,14 +3,7 @@
   <div class="requirements__title hidden-right">{{$t('Shoot_Match.title')}}</div>
   <div class="requirements__body">
     <picture class="requirements__image hidden-left">
-      <source
-          srcset="/img/phone-mini.png"
-          media="(max-width: 991px)"
-      />
-      <source
-          srcset="/img/phone.png"
-          media="(min-width: 992px)"
-      />
+
       <img
           ref="backgroundImage"
           src="/img/phone.png"
@@ -106,22 +99,24 @@ onUnmounted(() => {
     &__image{
       @apply flex items-end;
       @media (max-width: 991px) {
-        @apply absolute left-0;
-        top: 7550px;
+        @apply hidden;
       }
     }
     
     &__title{
-      @include text-48-newZelek;
-      @apply text-green;
+      @include text-36-newZelek;
+      @apply text-green text-center;
     }
     
     &__body{
       @apply flex w-full justify-between;
+      @media (max-width:991px) {
+        @apply justify-center;
+      }
     }
     
     &__container{
-      @apply flex gap-5 h-max;
+      @apply flex gap-5 h-max mb-7;
       @media (max-width:991px) {
         @apply flex-col;
       }

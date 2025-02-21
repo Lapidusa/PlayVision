@@ -9,14 +9,20 @@
   },
 
   "Authorization": {
+    "Log_in_or_create": "Войти или создать профиль",
     "Login": "Войти",
     "Create_profile": "Создать профиль",
-    "Get the code": "Получить код",
-    "Agreement": "Соглашаюсь с правилами пользования торговой площадкой и возврата",
-    "Or_log": "or log in via"
+    "Get_the_code": "Получить код",
+    "Agreement_start": "Соглашаюсь",
+    "Agreement_end": "с правилами пользования торговой площадкой и возврата",
+    "Or_log": "или войти через",
+    "Google": "Google",
+    "Facebook": "Facebook"
   },
 
   "Menu": {
+    "Menu": "Меню",
+    "Main": "Главная",
     "News": "Новости",
     "Price": "Прайс",
     "Contacts": "Контакты",

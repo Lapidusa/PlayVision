@@ -5,10 +5,12 @@
     </div>
     <div class="hero__container">
       <div class="container">
-        <div class="hero__text">
-          <p class="hero__text-title hidden-left" v-html="$t('Hero.Title')">
-          </p>
-          <p class="hero__text-description hidden-right">{{ $t('Hero.Description.Review') }} <span class="text-green">{{ $t('Hero.Description.Your') }}</span> {{ $t('Hero.Description.Game') }}
+        <div class="hero__text hidden-left">
+          <p class="hero__text-title" v-html="$t('Hero.Title')"></p>
+          <p class="hero__text-description">
+            {{ $t('Hero.Description.Review') }}
+            <span class="text-green">{{ $t('Hero.Description.Your') }}</span>
+            {{ $t('Hero.Description.Game') }}
           </p>
         </div>
       </div>

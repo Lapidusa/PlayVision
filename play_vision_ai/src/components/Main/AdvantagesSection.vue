@@ -1,8 +1,8 @@
 <template>
-  <div class="advantages ">
+  <div class="advantages">
     <div class="advantages__title hidden-right">{{ $t('Advantages.title') }}</div>
-    <div class="advantages__cards hidden-left">
-      <div v-for="index in 3" :key="index" class="advantages__card-container">
+    <div class="advantages__cards">
+      <div v-for="index in 3" :key="index" class="advantages__card-container hidden-left">
         <div class="advantages__card-wrapper">
           <div class="advantages__card-rectangle"></div>
           <div class="advantages__card">
@@ -26,31 +26,24 @@ const images = [
 
 <style scoped lang="scss">
 @use '../../../public/content/styles/_mixins' as *;
-
+$adaptive-width-m: 1400px;
+$adaptive-width-s: 640px;
 .advantages {
-  @apply flex flex-col gap-24;
+  @apply flex flex-col gap-12;
   &__title {
     @apply text-green text-center;
-    @include text-48-newZelek;
+    @include text-36-newZelek;
   }
   &__cards {
     @apply flex gap-5 relative ;
     margin-bottom: 170px;
-    //@media (max-width: 1560px) {
-    //  @apply grid-cols-1;
-    //}
-  }
-  &__card-container {
-    @apply relative flex flex-col items-center;
-  }
-  &__card-wrapper {
-    position: relative;
-    overflow: hidden;
+    @media (max-width: $adaptive-width-m) {
+      @apply flex-col gap-28;
+    }
   }
   &__card {
     @apply flex flex-col gap-6 items-center relative z-10;
     padding: 40px 25px;
-    border-radius: 30px;
     height: 422px;
     background: rgba(30, 48, 58, 0.02);
     backdrop-filter: blur(200px);
@@ -58,12 +51,25 @@ const images = [
 
     &-title {
       @apply text-white;
-      @include text-36-newZelek;
+      @include text-24-newZelek;
     }
 
     &-description {
       @apply text-center;
       @include text-20-white-montserrat;
+    }
+
+    &-container {
+      @apply relative flex flex-col items-center;
+      width: 33%;
+      @media (max-width: $adaptive-width-m) {
+        @apply w-full;
+      }
+    }
+    &-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
     }
   }
   &__card-rectangle {
@@ -78,10 +84,14 @@ const images = [
   }
   &__card-img {
     position: absolute;
-    top: 300px;
     z-index: 100;
-    @media (max-width: 1560px) {
-      top: 60%;
+    top: 310px;
+    @media (max-width: $adaptive-width-m) {
+      top: 220px;
+    }
+    @media (max-width: $adaptive-width-s) {
+      top: 250px;
+      scale: .8;
     }
   }
 }

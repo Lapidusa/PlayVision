@@ -1,5 +1,5 @@
 <template>
-  <div class="news">
+  <div class="news" id="news">
     <div class="news__title hidden-right">{{ $t('News.title') }}</div>
     <div class="news__swiper hidden-left">
       <swiper
@@ -61,12 +61,15 @@ const images = [
 .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet{
   margin: 0 2.5px;
 }
+.swiper-pagination-bullets.swiper-pagination-horizontal{
+  bottom: 0;
+}
 .news {
-  @apply flex flex-col gap-24;
-  overflow-y: visible !important;
+  @apply flex flex-col gap-12;
+  //overflow-y: visible !important;
 
   &__title {
-    @include text-48-newZelek;
+    @include text-36-newZelek;
     @apply text-green text-center;
   }
 
@@ -100,7 +103,7 @@ const images = [
       @apply absolute z-20;
       bottom: 20px;
       left: 20px;
-      width: calc(100% - 20px);
+      width: calc(100% - 40px);
       transition: all 0.3s ease;
     }
 

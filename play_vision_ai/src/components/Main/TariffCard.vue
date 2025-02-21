@@ -5,7 +5,7 @@
     <p class="price" v-else><b>{{ price.annually }}</b> {{ currency }}</p>
     <div class="tariff-card__container">
       <ul class="flex flex-col gap-2 w-fit">
-        <li v-for="(feature, index) in features" :key="index" class="flex gap-3 text-xl font-thin">
+        <li v-for="(feature, index) in features" :key="index" class="flex gap-3 font-thin text">
           <img :src="feature.available ? '/content/icons/true.svg' : '/content/icons/false.svg'" alt="">
           <span class="tariff__feature-title">{{ feature.name }}</span>
         </li>
@@ -118,7 +118,7 @@ export default {
 
   &__container{
     @media (max-width: 1100px) {
-      @apply flex justify-center;
+      @apply flex;
     }
   }
 }
@@ -129,10 +129,13 @@ export default {
 }
 .price{
   @include text-20-white-montserrat;
-  @apply text-center text-3xl;
+  @apply text-center;
 }
 .btn{
   @include btn-green-border;
-  padding: 13px;
+  padding: 5px;
+}
+.tariff__feature-title{
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
 }
 </style>
