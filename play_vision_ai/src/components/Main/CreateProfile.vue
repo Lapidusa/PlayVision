@@ -55,6 +55,9 @@ import ModalLogIn from "@/components/Main/ModalLogIn.vue";
   &__title{
     @include text-36-newZelek;
     @apply text-green;
+    @media screen  and (max-width: 650px) {
+      @apply text-center;
+    }
   }
   &__list{
     @apply flex flex-col gap-2;

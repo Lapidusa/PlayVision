@@ -35,14 +35,14 @@
             >
               <button
                   @click="changeLanguage('ru')"
-                  class="flex items-center w-full px-4 py-2 text-sm hover:text-green hover:bg-blue-light"
+                  class="flex items-center w-full px-4 py-2 text-white font-montserrat hover:text-green hover:bg-blue-light hover:rounded-t-md"
               >
                 <img src="/content/icons/russia.svg" alt="Русский" class="w-5 h-5 mr-2" />
                 Русский
               </button>
               <button
                   @click="changeLanguage('en')"
-                  class="flex items-center w-full px-4 py-2 text-sm hover:text-green hover:bg-blue-light"
+                  class="flex items-center w-full px-4 py-2 text-white font-montserrat hover:text-green hover:bg-blue-light hover:rounded-b-md"
               >
                 <img src="/content/icons/england.svg" alt="English" class="w-5 h-5 mr-2" />
                 English
@@ -60,29 +60,40 @@
     </div>
   </header>
 
-  <div v-if="isMenuOpen" class="fullscreen-menu ">
-    <div class="fullscreen-menu__header">
-      <div class="fullscreen-menu__header-container">
-        <h2>{{$t('Menu.Menu')}}</h2>
-        <button @click="toggleMenu" class="fullscreen-menu__close">
-          <img src="../../public/content/icons/close.svg" alt="menu" />
-        </button>
+  <div v-if="isMenuOpen" class="fullscreen-menu">
+    <div class="fullscreen-menu__container">
+      <div class="fullscreen-menu__header container">
+        <div class="fullscreen-menu__header-container">
+          <h2>{{$t('Menu.Menu')}}</h2>
+          <button @click="toggleMenu" class="fullscreen-menu__close">
+            <img src="../../public/content/icons/close.svg" alt="menu" />
+          </button>
+        </div>
+        <hr />
+        <ul class="fullscreen-menu__list">
+          <li><a href="#" @click="toggleMenu">{{$t('Menu.Main')}}</a></li>
+          <li><a href="#news" @click="toggleMenu">{{$t('Menu.News')}}</a></li>
+          <li><a href="#price" @click="toggleMenu">{{$t('Menu.Price')}}</a></li>
+          <li class="fullscreen-menu__language">
+            <button @click="changeLanguage('ru')" :class="['language-button', lang === 'ru' ? 'text-green' : '']">
+              <img src="/content/icons/russia.svg" alt="Русский" class="w-5 h-5 mr-2" />
+              Русский
+            </button>
+            <button @click="changeLanguage('en')" :class="['language-button', lang === 'en' ? 'text-green' : '']">
+              <img src="/content/icons/england.svg" alt="English" class="w-5 h-5 mr-2" />
+              English
+            </button>
+          </li>
+        </ul>
       </div>
-      <hr />
-      <ul class="fullscreen-menu__list">
-        <li><a href="#app" @click="toggleMenu">{{$t('Menu.Main')}}</a></li>
-        <li><a href="#news" @click="toggleMenu">{{$t('Menu.News')}}</a></li>
-        <li><a href="#price" @click="toggleMenu">{{$t('Menu.Price')}}</a></li>
-        <li><a href="#login" @click="toggleMenu">{{$t('Menu.Login')}}</a></li>
-      </ul>
-    </div>
-    <div class="fullscreen-menu__footer">
-      <p>{{$t('Menu.Contact_us')}}</p>
-      <a href="mailto:playvisionai@mail.ru" target="_blank">playvisionai@mail.ru</a>
-      <div class="flex gap-4 justify-end">
-        <a href="https://t.me/romver_o" target="_blank" class="footer__contactUs-telegram"></a>
-        <a href="https://vk.com/r.zverev2000" target="_blank" class="footer__contactUs-vk"></a>
-        <a href="https://www.youtube.com/" target="_blank" class="footer__contactUs-youtube"></a>
+      <div class="fullscreen-menu__footer container">
+        <p>{{$t('Menu.Contact_us')}}</p>
+        <a href="mailto:playvisionai@mail.ru" target="_blank" class="transition duration-500 ease-in-out hover:text-grey">playvisionai@mail.ru</a>
+        <div class="flex gap-4 justify-end">
+          <a href="https://t.me/romver_o" target="_blank" class="footer__contactUs-telegram"></a>
+          <a href="https://vk.com/r.zverev2000" target="_blank" class="footer__contactUs-vk"></a>
+          <a href="https://www.youtube.com/" target="_blank" class="footer__contactUs-youtube"></a>
+        </div>
       </div>
     </div>
   </div>
@@ -186,9 +197,10 @@ onBeforeUnmount(() => {
 
     &-item {
       @apply font-bold flex items-center justify-center h-fit;
-      @include text-20-white-montserrat-hover;
       line-height: 20px;
-
+      & .header__nav-action{
+        @include text-20-white-montserrat-hover;
+      }
       &:nth-child(5) .header__nav-action{
         text-transform: uppercase !important;
         @apply flex gap-3;
@@ -211,15 +223,17 @@ onBeforeUnmount(() => {
 }
 
 .fullscreen-menu {
- @apply bg-blue-middle fixed top-0 left-0 w-full h-full font-light;
- @include text-20-white-montserrat;
- font-size: clamp(1.125rem, 1.75vw, 1.25rem);
- z-index: 1000;
- display: flex;
- flex-direction: column;
- justify-content: space-between;
- padding: 30px 20px;
-  &__header-container {
+   @apply bg-blue-middle fixed top-0 left-0 w-full h-full font-light py-8;
+   @include text-20-white-montserrat;
+   font-size: clamp(1.125rem, 1.75vw, 1.25rem);
+   z-index: 1000;
+
+    &__container{
+      @apply flex flex-col justify-between h-full;
+      max-width: 98%;
+    }
+
+   &__header-container {
    display: flex;
    justify-content: space-between;
    align-items: center;
@@ -246,6 +260,7 @@ onBeforeUnmount(() => {
   &__list {
    list-style: none;
    padding: 0;
+   @apply flex flex-col gap-8 mt-2;
 
    li {
      a {
@@ -276,7 +291,30 @@ onBeforeUnmount(() => {
          filter: brightness(1.5);
        }
      }
-   }
+    }
+  }
+  &__language {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .language-button {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: none;
+      border: none;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      img {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+      }
+    }
   }
 }
 

@@ -59,7 +59,7 @@
 <script setup>
 import { defineProps, ref } from 'vue';
 import PhoneNumber from "@/components/Main/PhoneNumber.vue";
- defineProps({
+defineProps({
   customClass: {
     type: String,
     default: '',
@@ -71,7 +71,8 @@ import PhoneNumber from "@/components/Main/PhoneNumber.vue";
    idCheckbox: {
     type:String,
      default: 'checkbox1'
-   }
+   },
+   onOpen: Function
 });
 const isChecked = ref(false);
 
@@ -80,8 +81,10 @@ const isModalOpen = ref(false);
 const toggleModal = () => {
   isModalOpen.value = !isModalOpen.value;
   isChecked.value = false;
-};
+  console.log(isModalOpen.value);
 
+  document.body.style.overflow = isModalOpen.value ? "hidden" : '';
+};
 </script>
 
 <style scoped lang="scss">
@@ -163,7 +166,7 @@ display: none;
   content: '';
   width: 16px;
   height: 16px;
-  background-image: url('@/assets/checkMark.svg');
+  background-image: url('../../../public/content/icons/checkMark.svg');
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0;

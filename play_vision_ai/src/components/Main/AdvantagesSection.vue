@@ -38,13 +38,13 @@ $adaptive-width-s: 640px;
     @apply flex gap-5 relative ;
     margin-bottom: 170px;
     @media (max-width: $adaptive-width-m) {
-      @apply flex-col gap-28;
+      @apply flex-col gap-36;
     }
   }
   &__card {
     @apply flex flex-col gap-6 items-center relative z-10;
     padding: 40px 25px;
-    height: 422px;
+    height: 400px;
     background: rgba(30, 48, 58, 0.02);
     backdrop-filter: blur(200px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -85,12 +85,12 @@ $adaptive-width-s: 640px;
   &__card-img {
     position: absolute;
     z-index: 100;
-    top: 310px;
+    top: 280px;
     @media (max-width: $adaptive-width-m) {
       top: 220px;
     }
     @media (max-width: $adaptive-width-s) {
-      top: 250px;
+      top: 270px;
       scale: .8;
     }
   }

@@ -22,8 +22,10 @@ import SystemRequirements from "@/components/Main/SystemRequirements.vue";
 
 <style scoped lang="scss">
 .bg {
-  @apply flex flex-col ;
-  padding-top: 9vw;
-  gap: 20vw;
+  @apply flex flex-col gap-64 pt-32;
+  @media (max-width: 1920px) {
+    gap: 20vw;
+    padding-top: 11vw;
+  }
 }
 </style>
